@@ -9,10 +9,18 @@ function TypedText() {
     const [showCurser, setShowCursor] = useState(true);
 
 
-    const logWord = "Portfolio";
-
+    const logWord = "Happiness";
+    var audio = new Audio('src/assets/typing_sound.mp3');
     const text = 'console.log();';
-    const speed = 400;
+    const speed = 300;
+
+    const playTypingSound = () => {
+        audio.play();
+    }
+
+    const pauseTypingSound = () => {
+        audio.pause();
+    }
 
 
     // 3 stages: stage1-> console.log(); : stage2-> console.log(""_); : stage3-> console.log("happiness_");
@@ -22,6 +30,7 @@ function TypedText() {
         let iterate = true;
         let i2 = 0;
         let logWordIndex = 0;
+        playTypingSound();
 
         const interval = setInterval(() => {
             curserBool = !curserBool;
@@ -31,7 +40,7 @@ function TypedText() {
                 iterate = false;
                 console.log(i2);
                 console.log(logWordIndex);
-                if(i2 == 0){
+                if (i2 == 0) {
                 }
                 else if (i2 == 1) {
                     setDisplayTextPost(";");
@@ -53,6 +62,10 @@ function TypedText() {
                         setDisplayTextPre(prev => prev + logWord[logWordIndex]);
                         logWordIndex = logWordIndex + 1;
                     }
+                    else{
+                        pauseTypingSound();
+                    }
+
 
                 }
 
